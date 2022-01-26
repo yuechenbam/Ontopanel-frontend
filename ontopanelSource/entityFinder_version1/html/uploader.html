@@ -1,0 +1,29 @@
+<div class="ontopanel-box">
+    <div class="box-inner">
+        <span class="box-close-span">&times;</span>
+        <form enctype="multipart/form-data" class="ontopanel-form">
+            <h3 style="margin: 0px">Uploader</h3>
+            <br />
+            <div>
+                <p>Please upload a file</p>
+                <input type="file" name="formFile" />
+            </div>
+
+            <div>
+                <p>Or </br>Enter URL of raw data</p>
+                <input type="url" name="formURL" placeholder="https://example.com" />
+            </div>
+            <div>
+                <p>And enter the ontology name</p>
+                <input type="text" name="formName" placeholder="mseo" style="width:80px" maxlength="5" required='true'>
+
+            </div>
+            <div>
+                <button type="submit" name="upload">Submit</button>
+                <button type="submit" name="update" style="display: none;">Update</button>
+                <span name="form-info" style="display: none"></span>
+            </div>
+        </form>
+    </div>
+
+</div>

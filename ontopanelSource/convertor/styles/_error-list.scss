@@ -1,0 +1,24 @@
+.error-list {
+  margin-top: 5px;
+  overflow: auto;
+  padding: 5px;
+
+  .error-type {
+    font-size: 15px;
+    background-color: lightgrey;
+    font-weight: bold;
+  }
+
+  ul {
+    padding-left: 12px;
+    li {
+      margin: 10px;
+      cursor: pointer;
+    }
+  }
+
+  hr {
+    border-top: 2px solid black;
+    margin-bottom: 5px;
+  }
+}

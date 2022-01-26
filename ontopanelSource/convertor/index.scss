@@ -1,0 +1,72 @@
+@use "styles/error-list";
+
+.convertor-container {
+  width: 100%;
+  .convertor-bar {
+    height: 30px;
+    min-width: 150px;
+    margin-bottom: 15px;
+    display: flex;
+
+    select {
+      border: none;
+      border-radius: 2px;
+    }
+    input {
+      padding: 5px;
+      border: none;
+      border-radius: 2px;
+      font-size: 16px;
+      cursor: pointer;
+      color: white;
+      background-color: steelblue;
+      &:hover {
+        background-color: darkblue;
+      }
+    }
+  }
+  .transformer {
+    font-size: 12px;
+    display: flex;
+    margin-bottom: 8px;
+    input {
+      margin-left: 5px;
+      padding: 2px;
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+      color: white;
+      background-color: steelblue;
+      &:hover {
+        background-color: darkblue;
+      }
+    }
+  }
+
+  .convertor-show {
+    border: 1px solid black;
+    height: 300px;
+    .convertor-btn-group {
+      display: flex;
+      width: 100%;
+      input {
+        width: 100%;
+        padding: 5px;
+        border: none;
+        border-radius: 2px;
+        font-size: 16px;
+        cursor: pointer;
+        color: white;
+        background-color: steelblue;
+        &:hover {
+          background-color: darkblue;
+        }
+      }
+    }
+    .convertor-content {
+      font-size: 14px;
+      height: 280px;
+      overflow: auto;
+    }
+  }
+}

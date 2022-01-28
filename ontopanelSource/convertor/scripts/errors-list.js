@@ -10,6 +10,8 @@ export const errorList = (errors, ui) => {
   let errorContainer = document.createElement("div");
   errorContainer.innerHTML = errorhtml;
 
+  let noErrorDiv = errorContainer.querySelector('div[name="noerror"]');
+
   if (otherErrors.length) {
     let otherDiv = errorContainer.querySelector('div[name="other"]');
     let otherUl = otherDiv.querySelector("ul");
@@ -22,6 +24,7 @@ export const errorList = (errors, ui) => {
       otherUl.appendChild(li);
     });
     otherDiv.style.display = "block";
+    noErrorDiv.style.display = "none";
   }
 
   if (edgeErrors.length) {
@@ -36,6 +39,7 @@ export const errorList = (errors, ui) => {
       edgeUl.appendChild(li);
     });
     edgeDiv.style.display = "block";
+    noErrorDiv.style.display = "none";
   }
   if (nodeErrors.length) {
     let nodeDiv = errorContainer.querySelector('div[name="node"]');
@@ -48,6 +52,7 @@ export const errorList = (errors, ui) => {
       nodeUl.appendChild(li);
     });
     nodeDiv.style.display = "block";
+    noErrorDiv.style.display = "none";
   }
 
   if (relationErrors.length) {
@@ -61,6 +66,7 @@ export const errorList = (errors, ui) => {
       relationUl.appendChild(li);
     });
     relationDiv.style.display = "block";
+    noErrorDiv.style.display = "none";
   }
 
   return errorContainer;

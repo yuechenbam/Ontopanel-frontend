@@ -1,6 +1,7 @@
 import { storeData } from "./store.js";
 import uploader from "../html/uploader.html";
 import OntoButton from "./onto-button";
+import { hostAddress } from "../../vars.js";
 
 class OntoUploader {
   constructor(app) {
@@ -93,7 +94,7 @@ class OntoUploader {
   };
 
   ontoAddUpdateLocal = (data, updateId = null, keyword = "add") => {
-    fetch("https://ontopanel.herokuapp.com/api/v1/ontos/owltable/", {
+    fetch(hostAddress + "api/v1/ontos/owltable/", {
       method: "POST",
       body: data,
     })
@@ -131,7 +132,7 @@ class OntoUploader {
 
   ontoAddDB = (data, loginUser) => {
     loginUser = JSON.parse(loginUser);
-    fetch("https://ontopanel.herokuapp.com/api/v1/ontos/lists/", {
+    fetch(hostAddress + "api/v1/ontos/lists/", {
       method: "POST",
       body: data,
       headers: new Headers({
@@ -174,7 +175,7 @@ class OntoUploader {
     if (!(formFile.size || formURL)) {
       this.handleInfoToggle("Please enter File or URL!", "red");
     } else if (
-      Object.keys(storeData.OntoBank)
+      Object.keys(storeData.ontoBank)
         .filter((elem) => elem !== updateId)
         .includes("ontopanel-onto-extra-btn-" + tagName)
     ) {
@@ -204,9 +205,9 @@ class OntoUploader {
 
   ontoUpdateDB = (data, updateId, loginUser) => {
     loginUser = JSON.parse(loginUser);
-    let dbId = storeData.OntoBank[updateId].id;
+    let dbId = storeData.ontoBank[updateId].id;
 
-    fetch("https://ontopanel.herokuapp.com/api/v1/ontos/change/" + dbId, {
+    fetch(hostAddress + "api/v1/ontos/change/" + dbId, {
       method: "PUT",
       body: data,
       headers: new Headers({

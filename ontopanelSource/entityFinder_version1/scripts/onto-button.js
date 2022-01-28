@@ -2,6 +2,7 @@ import { storeData } from "./store.js";
 
 import ontoButton from "../html/onto-button.html";
 import OntoUploader from "./uploader.js";
+import { hostAddress } from "../../vars.js";
 
 class OntoButton {
   constructor(app, data) {
@@ -17,7 +18,7 @@ class OntoButton {
     this.btn.innerHTML = ontoButton;
     let name = this.data["title"];
     this.btn.querySelector('div[name="button-name"]').textContent = name;
-    const btnId = "ontopanel-onto-extra-btn-" + name;
+    const btnId = "entityfinderold-onto-extra-btn-" + name;
     this.btn.id = btnId;
 
     storeData.modifyOntoBank([btnId, this.data], "add");
@@ -26,8 +27,6 @@ class OntoButton {
       evt.preventDefault();
       let id = this.btn.id;
       let data = storeData.ontoBank[id];
-      console.log(id);
-      console.log(data);
       storeData.loadCurrentTable(data);
     };
 
@@ -57,7 +56,11 @@ class OntoButton {
       menuList.style.display = "none";
 
       let updateUploader = new OntoUploader(this.app);
-      updateUploader.updateTigger();
+      updateUploader.updateTigger(this.btn.id);
+      // add formName
+      let ontoFrom = updateUploader.ontoForm;
+      let inputName = ontoFrom.querySelector('input[name="formName"]');
+      inputName.value = this.data["title"];
     };
 
     ontoInfo.onclick = (evt) => {
@@ -117,7 +120,7 @@ class OntoButton {
       this.handleInfoToggle("Deleted locally", "green");
     } else {
       loginUser = JSON.parse(loginUser);
-      fetch("https://ontopanel.herokuapp.com/api/v1/ontos/change/" + dbId, {
+      fetch(hostAddress + "api/v1/ontos/change/" + dbId, {
         method: "DELETE",
         headers: new Headers({
           Authorization: `Token ${loginUser.token}`,
@@ -147,7 +150,7 @@ class OntoButton {
     }
   };
   handleInfoToggle = (err, color) => {
-    let menuInfo = this.app.querySelector("#ontopanel-onto-menu-info");
+    let menuInfo = this.app.querySelector("#entityfinderold-onto-menu-info");
     menuInfo.innerText = err;
     menuInfo.style.color = color;
     menuInfo.style.display = "block";

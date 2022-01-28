@@ -2,6 +2,7 @@ import { storeData } from "./store.js";
 
 import ontoButton from "../html/onto-button.html";
 import OntoUploader from "./uploader.js";
+import { hostAddress } from "../../vars.js";
 
 class OntoButton {
   constructor(app, data) {
@@ -115,7 +116,7 @@ class OntoButton {
       this.handleInfoToggle("Deleted locally", "green");
     } else {
       loginUser = JSON.parse(loginUser);
-      fetch("https://ontopanel.herokuapp.com/api/v1/ontos/change/" + dbId, {
+      fetch(hostAddress + "api/v1/ontos/change/" + dbId, {
         method: "DELETE",
         headers: new Headers({
           Authorization: `Token ${loginUser.token}`,

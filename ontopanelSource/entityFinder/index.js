@@ -27,10 +27,10 @@ export const makeEntityWnd = (ui) => {
   // });
 
   mxUtils.br(app);
-  mxResources.parse("ontopanel=Ontopanel");
+  mxResources.parse("entityfinder=Ontopanel-entityFinder");
 
   var wnd = new mxWindow(
-    mxResources.get("ontopanel"),
+    mxResources.get("entityfinder"),
     app,
     document.body.offsetWidth - 480,
     140,
@@ -43,7 +43,7 @@ export const makeEntityWnd = (ui) => {
   wnd.setMaximizable(false);
   wnd.setResizable(false);
   wnd.setClosable(true);
-  wnd.setVisible(true);
+  wnd.setVisible(false);
 
   let addBtn = app.querySelector("#ontopanel-onto-add-btn");
   let uploader = new OntoUploader(app);
@@ -112,7 +112,6 @@ export const makeEntityWnd = (ui) => {
           "add"
         );
         storeData.loadCurrentTable(data);
-        console.log(storeData.currentCategoriesContent);
       });
   };
 

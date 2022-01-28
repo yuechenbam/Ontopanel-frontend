@@ -112,7 +112,7 @@ export const extractData = (ui) => {
     edges: edges,
     errors: errors,
   });
-  console.log(allInfoJson);
+  //console.log(allInfoJson);'
   let allInfo = { nodes: nodes, edges: edges, errors: errors };
 
   return allInfo;

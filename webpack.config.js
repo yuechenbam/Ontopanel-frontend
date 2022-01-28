@@ -53,6 +53,14 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.xml$/,
+        use: [
+          {
+            loader: "raw-loader",
+          },
+        ],
+      },
     ],
   },
 };

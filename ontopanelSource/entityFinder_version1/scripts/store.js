@@ -8,16 +8,16 @@ class Store {
       "pt:http://www.daml.org/2003/01/periodictable/PeriodicTable#",
       "geo:http://www.opengis.net/ont/geosparql#",
     ];
-    this.ontoBank = { "ontopanel-onto-extra-btn-MSEO": {} };
+    this.ontoBank = { "entityfinderold-onto-extra-btn-MSEO": {} };
 
     this.currentCategoriesContent = {
-      title: null,
+      title: "none",
       categories: {
         Class: { name: "Class", content: null },
-        OP: { name: "ObjectProperty", content: null },
-        DP: { name: "DatatypeProperty", content: null },
+        ObjectProperty: { name: "ObjectProperty", content: null },
+        DatatypeProperty: { name: "DatatypeProperty", content: null },
         Individual: { name: "Individual", content: null },
-        AP: { name: "AnnotationProperty", content: null },
+        AnnotationProperty: { name: "AnnotationProperty", content: null },
         Datatype: { name: "Datatype", content: null },
       },
     };
@@ -26,7 +26,7 @@ class Store {
     // input: [key, value]
     switch (keyword) {
       case "reset":
-        this.ontoBank = { "ontopanel-onto-extra-btn-MSEO": {} };
+        this.ontoBank = { "entityfinderold-onto-extra-btn-MSEO": {} };
         break;
       case "add":
         this.ontoBank[input[0]] = input[1];
@@ -42,10 +42,10 @@ class Store {
           title: "none",
           categories: {
             Class: { name: "Class", content: null },
-            OP: { name: "ObjectProperty", content: null },
-            DP: { name: "DatatypeProperty", content: null },
+            ObjectProperty: { name: "ObjectProperty", content: null },
+            DatatypeProperty: { name: "DatatypeProperty", content: null },
             Individual: { name: "Individual", content: null },
-            AP: { name: "AnnotationProperty", content: null },
+            AnnotationProperty: { name: "AnnotationProperty", content: null },
             Datatype: { name: "Datatype", content: null },
           },
         };
@@ -73,10 +73,9 @@ class Store {
     }
 
     document.getElementById(
-      "ontopanel-tree-title"
+      "entityfinderold-tree-title"
     ).innerHTML = `selected: ${this.currentCategoriesContent.title}`;
-    console.log("load data");
-    document.getElementById("ontopanel-tree-class-btn").click();
+    document.getElementById("entityfinderold-tree-class-btn").click();
   };
 }
 

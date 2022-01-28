@@ -15,7 +15,7 @@ class Store {
     this.setting = URI;
 
     this.currentCategoriesContent = {
-      title: null,
+      title: "none",
       categories: {
         Class: { name: "Class", content: null },
         ObjectProperty: { name: "ObjectProperty", content: null },

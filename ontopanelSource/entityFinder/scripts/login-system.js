@@ -2,6 +2,7 @@ import OntoTree from "./onto-tree.js";
 import { storeData } from "./store.js";
 import OntoButton from "./onto-button";
 import loginSystem from "../html/login-system.html";
+import { hostAddress } from "../../vars.js";
 
 class SignForm {
   constructor(app) {
@@ -112,7 +113,7 @@ class SignForm {
     if (localStorage.getItem("loginUser")) {
       let token = JSON.parse(localStorage.getItem("loginUser")).token;
       localStorage.removeItem("loginUser");
-      fetch("https://ontopanel.herokuapp.com/api/v1/user/logout/", {
+      fetch(hostAddress + "api/v1/user/logout/", {
         method: "GET",
         headers: new Headers({
           "Content-Type": "application/json",
@@ -155,7 +156,7 @@ class SignForm {
       this.handleFormInfo(signLoginError, "Passwords are not equal.");
     } else {
       let postData = { email: email, password: password };
-      fetch("https://ontopanel.herokuapp.com/api/v1/user/register/", {
+      fetch(hostAddress + "api/v1/user/register/", {
         method: "POST",
         body: JSON.stringify(postData),
         headers: new Headers({
@@ -195,7 +196,7 @@ class SignForm {
 
     let postData = { username: email, password: password };
 
-    fetch("https://ontopanel.herokuapp.com/api/v1/user/login/", {
+    fetch(hostAddress + "api/v1/user/login/", {
       method: "POST",
       body: JSON.stringify(postData),
       headers: new Headers({
@@ -229,7 +230,7 @@ class SignForm {
   downloadOnto = (token, email) => {
     let panelInfo = this.app.querySelector("#ontopanel-sign-info");
 
-    fetch("https://ontopanel.herokuapp.com/api/v1/ontos/lists/", {
+    fetch(hostAddress + "api/v1/ontos/lists/", {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",
@@ -267,7 +268,7 @@ class SignForm {
       "#ontopanel-reset-password-form .box-info"
     );
 
-    fetch("https://ontopanel.herokuapp.com/api/v1/user/reset_password/", {
+    fetch(hostAddress + "api/v1/user/reset_password/", {
       method: "POST",
       body: JSON.stringify({ email: email }),
       headers: new Headers({
@@ -304,19 +305,16 @@ class SignForm {
     if (newPassword !== conNewPassword) {
       this.handleFormInfo(resetPasswordConfirmInfo, "Passwords are not equal!");
     } else {
-      fetch(
-        "https://ontopanel.herokuapp.com/api/v1/user/reset_password_confirm/",
-        {
-          method: "PATCH",
-          body: JSON.stringify({
-            secret_key: secretKey,
-            password: newPassword,
-          }),
-          headers: new Headers({
-            "Content-Type": "application/json",
-          }),
-        }
-      )
+      fetch(hostAddress + "api/v1/user/reset_password_confirm/", {
+        method: "PATCH",
+        body: JSON.stringify({
+          secret_key: secretKey,
+          password: newPassword,
+        }),
+        headers: new Headers({
+          "Content-Type": "application/json",
+        }),
+      })
         .then((response) => {
           if (response.ok) {
             response.json().then((text) => {

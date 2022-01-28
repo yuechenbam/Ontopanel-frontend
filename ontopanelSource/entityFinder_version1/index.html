@@ -1,27 +1,28 @@
-<div id="ontopanel-container" class="ontopanel-sign">
-  <div id="ontopanel-sign-info">Current user:</div>
+
+<div class="ontopanel-sign">
+  <div id="entityfinderold-sign-info">Current user:</div>
   <div style="display: flex">
-    <button id="ontopanel-signup-btn">SignUp</button>
-    <button id="ontopanel-login-btn">Login</button>
-    <button id="ontopanel-logout-btn" style="display: none">Logout</button>
+    <button id="entityfinderold-signup-btn">SignUp</button>
+    <button id="entityfinderold-login-btn">Login</button>
+    <button id="entityfinderold-logout-btn" style="display: none">Logout</button>
   </div>
 </div>
 
-<div id="ontopanel-onto-btngroup" style="display: flex; height: 40px">
-  <div style="display: flex; height: 30px" id="ontopanel-onto-extra-btn"></div>
+<div class="ontopanel-onto-btn-group" style="display: flex; height: 40px">
+  <div style="display: flex; height: 30px" id="entityfinderold-onto-extra-btn"></div>
   <div style="display: flex; height: 30px">
-    <button id="ontopanel-onto-extra-btn-MSEO" style="cursor: pointer">
+    <button id="entityfinderold-onto-extra-btn-MSEO" style="cursor: pointer">
       MSEO
     </button>
-    <button id="ontopanel-onto-add-btn" style="cursor: pointer">+</button>
+    <button name="onto-add-btn" style="cursor: pointer">+</button>
     <p
-      id="ontopanel-tree-title"
+      id="entityfinderold-tree-title"
       style="margin: 5px 0px 0px 30px; font-size: 18px; font-weight: bold"
     >
       selected: none
     </p>
     <button
-      id="ontopanel-namespace-btn"
+      name="namespace-btn"
       style="
         border: 1px soild black;
         margin: 5px 0px 0px 5px;
@@ -33,23 +34,34 @@
     </button>
   </div>
 </div>
-<div id="ontopanel-onto-menu-info" style="display: none"></div>
+<div id="entityfinderold-onto-menu-info" style="display: none"></div>
 
-<div id="ontopanel-tree-container" class="ontopanel-tree">
+<div id="entityfinderold-tree-container" class="ontopanel-tree">
   <div style="display: flex; height: 30px">
-    <button id="ontopanel-tree-class-btn">Class</button>
-    <button id="ontopanel-tree-op-btn">OP</button>
-    <button id="ontopanel-tree-dp-btn">DP</button>
-    <button id="ontopanel-tree-ind-btn">Ind</button>
-    <button id="ontopanel-tree-ap-btn">AP</button>
-    <button id="ontopanel-tree-dt-btn">DT</button>
+    <button id="entityfinderold-tree-class-btn">Class</button>
+    <button id="entityfinderold-tree-op-btn">OP</button>
+    <button id="entityfinderold-tree-dp-btn">DP</button>
+    <button id="entityfinderold-tree-ind-btn">Ind</button>
+    <button id="entityfinderold-tree-ap-btn">AP</button>
+    <button id="entityfinderold-tree-dt-btn">DT</button>
     <input
-      id="ontopanel-search-term"
+      id="entityfinderold-search-term"
       style="margin-left: 50px"
       placeholder="search entity"
     />
   </div>
-  <div id="onto-tree-content">
-    <div>treeshowhere</div>
+  <div name="onto-tree-content">
+    <div>
+      <b>Warning:</b> <br\>
+      1. this version is old. New verison is ontopanel-entityFinder and is loaded.<br\>
+      2. this version is only suitable for chowlk convertor, and will cause some errors if you use ontopanel-convertor.<br\>
+      3. the new version has more functionalities.<br\>
+      <b>Switch to new version:</b> <br\>
+      1. if your file contains Chowlk library, open convertor, and transform it first. Maybe also convert once to see whether it contains wrong shapes. <br\>
+      <br\>
+      <b>Issues:</b><br\>
+      Due to the server it might show problem if you upload large ontology file. If so, try to merge all the imported files and download it.
+      It could be solved when the new server is ready.<br\> </div>
   </div>
 </div>
+

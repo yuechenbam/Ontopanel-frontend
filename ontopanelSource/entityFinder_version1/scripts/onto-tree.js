@@ -21,7 +21,7 @@ class OntoTree {
 
     let expandAllBtn = this.treeContent.querySelectorAll(".collapse-btn")[0];
     let foldAllBtn = this.treeContent.querySelectorAll(".collapse-btn")[1];
-    let searchBar = this.app.querySelector("#ontopanel-search-term");
+    let searchBar = this.app.querySelector("#entityfinderold-search-term");
     expandAllBtn.onclick = (evt) => {
       evt.preventDefault();
       this.collpaseAll();
@@ -40,7 +40,9 @@ class OntoTree {
 
     let liElem = tree.querySelector("li");
 
-    let treeEntities = this.treeContent.querySelector("#ontopanel-tree-entity");
+    let treeEntities = this.treeContent.querySelector(
+      "#entityfinderold-tree-entity"
+    );
 
     let content = this.data.content;
 
@@ -82,7 +84,8 @@ class OntoTree {
     if (li.length) {
       this.collpaseAll();
       let currentTableId =
-        "ontopanel-onto-extra-btn-" + storeData.currentCategoriesContent.title;
+        "entityfinderold-onto-extra-btn-" +
+        storeData.currentCategoriesContent.title;
       let table = JSON.parse(
         storeData.ontoBank[currentTableId].onto_table.table
       );
@@ -199,7 +202,8 @@ const makeDetailBox = (id, detailBox) => {
   let entityId = id.replace("li-term-", "");
 
   let currentTableId =
-    "ontopanel-onto-extra-btn-" + storeData.currentCategoriesContent.title;
+    "entityfinderold-onto-extra-btn-" +
+    storeData.currentCategoriesContent.title;
 
   let table = JSON.parse(storeData.ontoBank[currentTableId].onto_table.table);
   let entityContent = table[entityId];
@@ -233,7 +237,8 @@ const liOutBtnToggle = (id, ui, wnd, evt) => {
   let labelOffset = 0;
   let currentOnto =
     storeData.ontoBank[
-      "ontopanel-onto-extra-btn-" + storeData.currentCategoriesContent.title
+      "entityfinderold-onto-extra-btn-" +
+        storeData.currentCategoriesContent.title
     ];
   let term = JSON.parse(currentOnto.onto_table.table)[entityId];
   let cate = term.BelongsTo;
@@ -261,7 +266,7 @@ const liOutBtnToggle = (id, ui, wnd, evt) => {
       labelOffset = size.width + maxNameLength + 30;
 
       break;
-    case "OP":
+    case "ObjectProperty":
       var colCell = new mxCell(
         label,
         new mxGeometry(0, 0, 90, 26),
@@ -278,7 +283,24 @@ const liOutBtnToggle = (id, ui, wnd, evt) => {
       labelOffset = maxNameLength * 8 + 20 + 30;
 
       break;
-    case "DP":
+    case "DatatypeProperty":
+      var colCell = new mxCell(
+        label,
+        new mxGeometry(0, 0, 0, 0),
+        "edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fontSize=12;"
+      );
+      var maxNameLength = label.length;
+
+      colCell.geometry.setTerminalPoint(new mxPoint(0, 0), true);
+      colCell.geometry.setTerminalPoint(
+        new mxPoint(maxNameLength * 8 + 20, 0),
+        false
+      );
+      colCell.edge = true;
+      labelOffset = maxNameLength * 8 + 20 + 30;
+
+      break;
+    case "AnnotationProperty":
       var colCell = new mxCell(
         label,
         new mxGeometry(0, 0, 0, 0),
@@ -350,7 +372,8 @@ const liReplaceBtnToggle = (id, ui) => {
   let entityId = id.replace("li-term-", "");
   let currentOnto =
     storeData.ontoBank[
-      "ontopanel-onto-extra-btn-" + storeData.currentCategoriesContent.title
+      "entityfinderold-onto-extra-btn-" +
+        storeData.currentCategoriesContent.title
     ];
   let term = JSON.parse(currentOnto.onto_table.table)[entityId];
   let cate = term.BelongsTo;

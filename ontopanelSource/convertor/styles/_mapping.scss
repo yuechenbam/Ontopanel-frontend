@@ -1,0 +1,20 @@
+.mapping-tool {
+  form {
+    display: flex;
+    select {
+      border: none;
+      border-radius: 2px;
+    }
+    input {
+      border: none;
+      border-radius: 2px;
+      font-size: 12px;
+      cursor: pointer;
+      color: black;
+      background-color: lightgrey;
+      &:hover {
+        background-color: grey;
+      }
+    }
+  }
+}

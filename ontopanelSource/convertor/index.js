@@ -4,6 +4,8 @@ import { extractData } from "./scripts/extract-data.js";
 import { storeData } from "./scripts/store.js";
 import { errorList } from "./scripts/errors-list";
 import { transform } from "./scripts/transform";
+import { makeMappingWindow } from "./scripts/mapping";
+import { hostAddress } from "../vars";
 
 export const makeConvertorWnd = (ui) => {
   var app = document.createElement("div");
@@ -14,7 +16,7 @@ export const makeConvertorWnd = (ui) => {
   app.addEventListener("contextmenu", (evt) => evt.preventDefault());
 
   mxUtils.br(app);
-  mxResources.parse("convertor=convertor");
+  mxResources.parse("convertor=Ontopanel-convertor");
 
   var wnd = new mxWindow(
     mxResources.get("convertor"),
@@ -30,14 +32,22 @@ export const makeConvertorWnd = (ui) => {
   wnd.setMaximizable(false);
   wnd.setResizable(false);
   wnd.setClosable(true);
-  wnd.setVisible(true);
+  wnd.setVisible(false);
 
   let conBtn = app.querySelector('input[name="convert"]');
   let transBtn = app.querySelector('input[name="transform"]');
+  let mappingBtn = app.querySelector('input[name="mapping"]');
   let resultBtn = app.querySelector('input[name="result"]');
   let errorBtn = app.querySelector('input[name="show-error"]');
   let showWindow = app.querySelector(".convertor-content");
   let downloadBtn = app.querySelector('input[name="download"]');
+  let conInfo = app.querySelector(".convert-info");
+
+  mappingBtn.onclick = (evt) => {
+    let mappingContainer = makeMappingWindow();
+
+    showWindow.firstElementChild.replaceWith(mappingContainer);
+  };
 
   resultBtn.onclick = (evt) => {
     let pre = document.createElement("pre");
@@ -82,8 +92,14 @@ export const makeConvertorWnd = (ui) => {
       format: format,
       data: graphData,
     };
+    let tempInfo = {
+      result: "In process, please wait",
+      errors: null,
+    };
+    storeData.modifyData(tempInfo);
+    resultBtn.click();
 
-    fetch("http://127.0.0.1:8000/api/v1/convertor/", {
+    fetch(hostAddress + "api/v1/convertor/", {
       method: "POST",
       body: JSON.stringify(postData),
       headers: new Headers({

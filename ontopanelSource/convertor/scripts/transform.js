@@ -132,7 +132,7 @@ const judgeNodeType = (elem) => {
     NodeType = "pass";
   } else if (style.includes("rounded=0")) {
     // individual
-    if (value.includes("<u>") || style.includes("fontStyle=4")) {
+    if (value.includes("</u>") || style.includes("fontStyle=4")) {
       NodeType = "Individual";
     } else if (textValue.includes("^^") || textValue.includes("@")) {
       NodeType = "DataValue";

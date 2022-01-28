@@ -1,0 +1,39 @@
+<div class="mapping-tool">
+  <form action="multipart/form-data">
+    <input
+      type="file"
+      id="myfile"
+      name="myFile"
+      required
+      style="max-width: 190px"
+    />
+
+    <select name="filetype">
+      <option value="csv">csv</option>
+      <option value="excel">excel</option>
+      <option value="json">json</option>
+    </select>
+
+    <select name="decimal">
+      <option value=",">,</option>
+      <option value=";">.</option>
+    </select>
+
+    <select name="csv-seperator">
+      <option value=",">,</option>
+      <option value=";">;</option>
+    </select>
+
+    <!-- <input
+      type="number"
+      name="startRow"
+      style="width: 40px"
+      value="1"
+      required
+      min="1"
+    /> -->
+
+    <input type="submit" name="submit" />
+  </form>
+  <div>under development</div>
+</div>

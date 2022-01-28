@@ -7,17 +7,17 @@ import "./index.scss";
 
 export const makeEntityWnd = (ui) => {
   var app = document.createElement("div");
-  app.id = "ontopanel-app";
+  app.id = "entityfinderold-app";
   app.style = "height: 450px; width: 380px; font-size: 15px; padding: 5px; ";
 
   app.innerHTML = layout;
   app.addEventListener("contextmenu", (evt) => evt.preventDefault());
 
   mxUtils.br(app);
-  mxResources.parse("ontopanel=Ontopanel");
+  mxResources.parse("entityfinderOld=entityFinder(old)");
 
   var wnd = new mxWindow(
-    mxResources.get("ontopanel"),
+    mxResources.get("entityfinderOld"),
     app,
     document.body.offsetWidth - 480,
     140,
@@ -32,7 +32,7 @@ export const makeEntityWnd = (ui) => {
   wnd.setClosable(true);
   wnd.setVisible(false);
 
-  let addBtn = app.querySelector("#ontopanel-onto-add-btn");
+  let addBtn = app.querySelector('button[name="onto-add-btn"]');
   let uploader = new OntoUploader(app);
   addBtn.onclick = (evt) => {
     evt.preventDefault();
@@ -41,33 +41,33 @@ export const makeEntityWnd = (ui) => {
 
   let signLogin = new SignForm(app);
 
-  let signBtn = app.querySelector("#ontopanel-signup-btn");
+  let signBtn = app.querySelector("#entityfinderold-signup-btn");
   signBtn.onclick = (evt) => {
     evt.preventDefault();
     signLogin.signUp();
   };
 
-  let loginBtn = app.querySelector("#ontopanel-login-btn");
+  let loginBtn = app.querySelector("#entityfinderold-login-btn");
   loginBtn.onclick = (evt) => {
     evt.preventDefault();
     signLogin.login();
   };
 
-  let logoutBtn = app.querySelector("#ontopanel-logout-btn");
+  let logoutBtn = app.querySelector("#entityfinderold-logout-btn");
   logoutBtn.onclick = (evt) => {
     evt.preventDefault();
     signLogin.logout();
   };
 
-  let ontoTreeContent = app.querySelector("#onto-tree-content");
+  let ontoTreeContent = app.querySelector('div[name="onto-tree-content"]');
 
   const categoriesBtn = {
-    "ontopanel-tree-class-btn": "Class",
-    "ontopanel-tree-op-btn": "OP",
-    "ontopanel-tree-dp-btn": "DP",
-    "ontopanel-tree-ind-btn": "Individual",
-    "ontopanel-tree-ap-btn": "AP",
-    "ontopanel-tree-dt-btn": "Datatype",
+    "entityfinderold-tree-class-btn": "Class",
+    "entityfinderold-tree-op-btn": "ObjectProperty",
+    "entityfinderold-tree-dp-btn": "DatatypeProperty",
+    "entityfinderold-tree-ind-btn": "Individual",
+    "entityfinderold-tree-ap-btn": "AnnotationProperty",
+    "entityfinderold-tree-dt-btn": "Datatype",
   };
   Object.keys(categoriesBtn).forEach((btnName) => {
     let btn = app.querySelector("#" + btnName);
@@ -86,7 +86,7 @@ export const makeEntityWnd = (ui) => {
     };
   });
 
-  app.querySelector("#ontopanel-onto-extra-btn-MSEO").onclick = (evt) => {
+  app.querySelector("#entityfinderold-onto-extra-btn-MSEO").onclick = (evt) => {
     evt.preventDefault();
     fetch("plugins/ontopanelPlugin/ontoData/mseo_ontopanel.json")
       .then((response) => {
@@ -95,20 +95,21 @@ export const makeEntityWnd = (ui) => {
       .then((data) => {
         data.onto_table.namespaces = storeData.mesoNamespace;
         storeData.modifyOntoBank(
-          ["ontopanel-onto-extra-btn-MSEO", data],
+          ["entityfinderold-onto-extra-btn-MSEO", data],
           "add"
         );
         storeData.loadCurrentTable(data);
       });
   };
 
-  app.querySelector("#ontopanel-namespace-btn").onclick = (evt) => {
+  app.querySelector('button[name="namespace-btn"]').onclick = (evt) => {
     evt.preventDefault();
 
     if (storeData.currentCategoriesContent.title) {
       let currentOnto =
         storeData.ontoBank[
-          "ontopanel-onto-extra-btn-" + storeData.currentCategoriesContent.title
+          "entityfinderold-onto-extra-btn-" +
+            storeData.currentCategoriesContent.title
         ];
 
       let currentNamespace = currentOnto.onto_table.namespaces.join("<br/>");

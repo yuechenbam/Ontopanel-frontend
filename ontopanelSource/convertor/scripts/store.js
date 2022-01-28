@@ -2,6 +2,7 @@ class Store {
   constructor() {
     this.errors = null;
     this.result = null;
+    this.mappingData = null;
   }
 
   modifyData = (data) => {
@@ -11,6 +12,10 @@ class Store {
   resetData = () => {
     this.errors = null;
     this.result = null;
+    this.mappingData = null;
+  };
+  uploadMappingData = (data) => {
+    this.mappingData = data;
   };
 }
 

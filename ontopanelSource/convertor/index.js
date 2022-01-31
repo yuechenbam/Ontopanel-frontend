@@ -125,7 +125,7 @@ export const makeConvertorWnd = (ui) => {
       })
       .catch((error) => {
         let errors = {
-          result: text,
+          result: error,
           errors: null,
         };
         storeData.modifyData(errors);

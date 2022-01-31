@@ -195,7 +195,8 @@ class OntoUploader {
   updateOntoBtn = (data, updateId) => {
     let thisBtn = this.app.querySelector("#" + updateId);
     let ontoName = data["title"];
-    thisBtn.innerText = ontoName;
+    let btnText = thisBtn.querySelector('div[name="button-name"]');
+    btnText.textContent = ontoName;
     const newId = "ontopanel-onto-extra-btn-" + ontoName;
     thisBtn.id = newId;
     storeData.modifyOntoBank([updateId, null], "delete");

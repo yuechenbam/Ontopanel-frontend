@@ -86,13 +86,15 @@ class OntoTree {
       for (let i = 0; i < li.length; i++) {
         let liTermTextAll = li[i].querySelectorAll('div[name="li-term-text"]');
         let liTermText = liTermTextAll[0];
-        let entityId = liTermText.textContent;
+        let entityId = liTermText.id.replace("li-term-", "");
         let entityLabel = table[entityId].RDFLabel;
 
         let c = [...liTermTextAll];
-        let entityIdString = c.map((x) => x.firstChild.textContent).join("\n");
+        let entityIdString = c
+          .map((x) => x.id.replace("li-term-", ""))
+          .join("\n");
         let entityLabelString = c
-          .map((x) => table[x.firstChild.textContent].RDFLabel)
+          .map((x) => table[x.id.replace("li-term-", "")].RDFLabel)
           .join("\n");
 
         if (entityIdString || entityLabelString) {
@@ -168,7 +170,6 @@ const buildTree = (ui, arr, liElem, wnd, treeContent) => {
       evt.preventDefault();
       let liEntityDetail = liText.children[1];
       let newDetail = makeDetailBox(id, liEntityDetail);
-      console.log(newDetail);
       liEntityDetail.replaceWith(newDetail);
       newDetail.style.display = "block";
       newDetail.scrollIntoView({ block: "nearest", inline: "center" });
@@ -265,6 +266,7 @@ const liOutBtnToggle = (text, id, ui, wnd, evt) => {
   let cate = term.BelongsTo;
   let color = term.Color;
   let label = text;
+  let attrs;
 
   switch (cate) {
     case "Class":
@@ -285,6 +287,7 @@ const liOutBtnToggle = (text, id, ui, wnd, evt) => {
       colCell.geometry.width = size.width + maxNameLength;
       colCell.vertex = true;
       labelOffset = size.width + maxNameLength + 30;
+      attrs = { label: label, Type: cate, IRI: term.EntityIRI };
 
       break;
     case "ObjectProperty":
@@ -302,6 +305,7 @@ const liOutBtnToggle = (text, id, ui, wnd, evt) => {
 
       colCell.edge = true;
       labelOffset = maxNameLength * 8 + 20 + 30;
+      attrs = { label: label, Type: cate, IRI: term.EntityIRI };
 
       break;
     case "DatatypeProperty":
@@ -319,6 +323,7 @@ const liOutBtnToggle = (text, id, ui, wnd, evt) => {
       );
       colCell.edge = true;
       labelOffset = maxNameLength * 8 + 20 + 30;
+      attrs = { label: label, Type: cate, IRI: term.EntityIRI };
 
       break;
     case "Individual":
@@ -333,9 +338,16 @@ const liOutBtnToggle = (text, id, ui, wnd, evt) => {
       colCell.geometry.width = size.width + maxNameLength;
       colCell.vertex = true;
       labelOffset = size.width + maxNameLength + 30;
+      attrs = {
+        label: "<u>" + label + "</u>",
+        Type: cate,
+        IRI: term.EntityIRI,
+      };
       break;
 
     case "Datatype":
+      label = `"value"^^${text}`;
+      cate = "DataValue";
       var colCell = new mxCell(
         label,
         new mxGeometry(0, 0, 90, 26),
@@ -347,6 +359,7 @@ const liOutBtnToggle = (text, id, ui, wnd, evt) => {
       colCell.geometry.width = size.width + maxNameLength;
       colCell.vertex = true;
       labelOffset = size.width + maxNameLength + 30;
+      attrs = { label: label, Type: cate, IRI_DT: term.EntityIRI };
       break;
     case "AnnotationProperty":
       var colCell = new mxCell(
@@ -363,11 +376,10 @@ const liOutBtnToggle = (text, id, ui, wnd, evt) => {
       );
       colCell.edge = true;
       labelOffset = maxNameLength * 8 + 20 + 30;
+      attrs = { label: label, Type: cate, IRI: term.EntityIRI };
 
       break;
   }
-
-  let attrs = { label: text, Type: cate, IRI: term.EntityIRI };
 
   let obj = makeNewObject(attrs);
 

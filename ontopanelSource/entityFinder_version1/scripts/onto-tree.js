@@ -333,7 +333,7 @@ const liOutBtnToggle = (id, ui, wnd, evt) => {
 
     case "Datatype":
       var colCell = new mxCell(
-        label,
+        `"value"^^${label}`,
         new mxGeometry(0, 0, 90, 26),
         "rounded=0;whiteSpace=wrap;html=1;fillColor=#FF8C00;"
       );
@@ -383,6 +383,7 @@ const liReplaceBtnToggle = (id, ui) => {
   if (cells) {
     cells.forEach((cell) => {
       let styleString;
+      console.log(cate);
       switch (cate) {
         case "Individual":
           ui.editor.graph.model.setValue(cell, "<u>" + label + "</u>");
@@ -399,8 +400,10 @@ const liReplaceBtnToggle = (id, ui) => {
           }
           break;
         case "Datatype":
+          ui.editor.graph.model.setValue(cell, `"value"^^${label}`);
           styleString = "rounded=0;whiteSpace=wrap;html=1;fillColor=#FF8C00;";
           ui.editor.graph.model.setStyle(cell, styleString);
+          break;
 
         default:
           ui.editor.graph.model.setValue(cell, label);

@@ -118,7 +118,7 @@ export const makeEntityWnd = (ui) => {
   app.querySelector("#ontopanel-namespace-btn").onclick = (evt) => {
     evt.preventDefault();
 
-    if (storeData.currentCategoriesContent.title) {
+    if (storeData.currentCategoriesContent.title !== "none") {
       let currentOnto =
         storeData.ontoBank[
           "ontopanel-onto-extra-btn-" + storeData.currentCategoriesContent.title
@@ -139,6 +139,12 @@ export const makeEntityWnd = (ui) => {
       nameSpaceCell.vertex = true;
       let labelOffset = size.width + 30;
       let graph = ui.editor.graph;
+
+      let doc = mxUtils.createXmlDocument();
+      let obj = doc.createElement("object");
+      obj.setAttribute("label", outputNamespace);
+      obj.setAttribute("Type", "Namespace");
+      graph.getModel().setValue(nameSpaceCell, obj);
 
       let windowPosition = mxUtils.convertPoint(
         graph.container,

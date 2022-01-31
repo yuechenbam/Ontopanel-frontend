@@ -56,7 +56,10 @@ class OntoButton {
       menuList.style.display = "none";
 
       let updateUploader = new OntoUploader(this.app);
-      updateUploader.updateTigger();
+      updateUploader.updateTigger(this.btn.id);
+      let ontoFrom = updateUploader.ontoForm;
+      let inputName = ontoFrom.querySelector('input[name="formName"]');
+      inputName.value = this.data["title"];
     };
 
     ontoInfo.onclick = (evt) => {

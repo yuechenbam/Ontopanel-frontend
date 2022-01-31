@@ -35,14 +35,14 @@ Draw.loadPlugin(function (ui) {
     ui.menus.addMenuItems(menu, ["entityfinderOld"], parent);
   };
 
-  // // active backend
-  // fetch("https://ontopanel.herokuapp.com/api/v1/ontos/lists/", {
-  //   method: "GET",
-  // });
+  // active backend
+  fetch("https://ontopanel.herokuapp.com/api/v1/ontos/lists/", {
+    method: "GET",
+  });
 
-  // setInterval(function () {
-  //   fetch("https://ontopanel.herokuapp.com/api/v1/ontos/lists/", {
-  //     method: "GET",
-  //   });
-  // }, 20 * 1000 * 60);
+  setInterval(function () {
+    fetch("https://ontopanel.herokuapp.com/api/v1/ontos/lists/", {
+      method: "GET",
+    });
+  }, 20 * 1000 * 60);
 });

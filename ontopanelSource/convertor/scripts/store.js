@@ -2,7 +2,9 @@ class Store {
   constructor() {
     this.errors = null;
     this.result = null;
+    this.mappingfile = "None";
     this.mappingData = null;
+    this.downloadFormat = "application/rdf+xml";
   }
 
   modifyData = (data) => {
@@ -12,10 +14,20 @@ class Store {
   resetData = () => {
     this.errors = null;
     this.result = null;
+    this.mappingfile = "None";
+    this.mappingData = null;
+    this.downloadFormat = "application/rdf+xml";
+  };
+  modifyMappingData = (filename, data) => {
+    this.mappingfile = filename;
+    this.mappingData = data;
+  };
+  resetMappingData = () => {
+    this.mappingfile = "None";
     this.mappingData = null;
   };
-  uploadMappingData = (data) => {
-    this.mappingData = data;
+  modifyDownloadFormat = (value) => {
+    this.downloadFormat = value;
   };
 }
 

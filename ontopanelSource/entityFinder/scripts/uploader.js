@@ -30,7 +30,6 @@ class OntoUploader {
 
   addTrigger = () => {
     this.uploaderBox.style.display = "block";
-    console.log(this.uploaderBox);
 
     let formAddBtn = this.ontoForm.querySelector('button[name="upload"]');
     this.updateOrAddBtn("add");

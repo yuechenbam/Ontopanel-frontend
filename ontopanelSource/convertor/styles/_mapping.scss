@@ -1,20 +1,138 @@
 .mapping-tool {
   form {
     display: flex;
-    select {
-      border: none;
-      border-radius: 2px;
+    border-bottom: 1px solid black;
+    .selector,
+    .selector-seperator {
+      border: 1px solid #777;
+      border-radius: 4px;
+      padding: 0 px;
+      width: 80px;
+      background-color: #fff;
+      position: relative;
+      label {
+        width: 100%;
+        font-size: 8px;
+        text-transform: uppercase;
+        color: #777;
+        padding: 0 5px;
+        position: absolute;
+        top: 4px;
+      }
+      select {
+        margin-top: 10px;
+        width: 100%;
+        background-color: #fff;
+        border: 0px;
+        height: 17px;
+        font-size: 13px;
+
+        option {
+          font-size: 13px;
+          font-weight: bold;
+        }
+      }
+      input {
+        margin-top: 10px;
+        width: 95%;
+        background-color: #fff;
+        font-weight: normal;
+        border: 0px;
+        height: 17px;
+      }
     }
     input {
       border: none;
       border-radius: 2px;
-      font-size: 12px;
       cursor: pointer;
       color: black;
+      font-weight: bold;
       background-color: lightgrey;
       &:hover {
         background-color: grey;
       }
+    }
+  }
+  .mapping-format {
+    height: 25px;
+    display: flex;
+    align-items: center;
+    div {
+      margin-right: 3px;
+    }
+    select {
+      option {
+        font-size: 13px;
+        font-weight: bold;
+      }
+    }
+    .mapping-format-example {
+      color: rgb(141, 137, 137);
+      margin-left: 3px;
+      font-size: 13px;
+    }
+  }
+  .mapping-error {
+    display: none;
+    color: red;
+  }
+  .mapping-table {
+    // height: 295px;
+    height: 315px;
+    width: 100%;
+    overflow: auto;
+
+    table {
+      height: 100%;
+      width: 100%;
+      border-collapse: collapse;
+      th {
+        font-size: 13px;
+        border: 1px solid black;
+        position: sticky;
+        top: 0px;
+        text-align: left;
+        background-color: darkgrey;
+        color: black;
+        padding: 5px;
+        input {
+          margin-right: 3px;
+          padding: 0px;
+          border: none;
+          cursor: pointer;
+          font-size: 11px;
+          background-color: transparent;
+          &:hover {
+            background-color: lightgrey;
+          }
+        }
+      }
+      tr:nth-child(odd) {
+        background-color: #dddddd;
+      }
+      td {
+        border: 1px solid black;
+        text-align: left;
+        font-size: 11px;
+        padding: 5px;
+      }
+    }
+  }
+  .mapping-count {
+    font-size: 11px;
+    font-weight: bold;
+  }
+  .mapping-reset-btn {
+    margin-left: 5px;
+    padding: 2px;
+    border: none;
+    border-radius: 2px;
+    font-size: 11px;
+    cursor: pointer;
+    color: white;
+    background-color: steelblue;
+    &:hover {
+      background-color: darkblue;
     }
   }
 }

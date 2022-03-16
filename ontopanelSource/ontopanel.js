@@ -11,7 +11,7 @@ Draw.loadPlugin(function (ui) {
   loadOntopanelLibrary(ui);
 
   let entityFinderWnd = makeEntityWnd(ui);
-  ui.actions.addAction("entityfinder", function () {
+  ui.actions.addAction("entitymanager", function () {
     entityFinderWnd.setVisible(!entityFinderWnd.isVisible());
   });
 
@@ -31,7 +31,7 @@ Draw.loadPlugin(function (ui) {
   menu.funct = function (menu, parent) {
     oldFunct.apply(this, arguments);
     ui.menus.addMenuItems(menu, ["convertor"], parent);
-    ui.menus.addMenuItems(menu, ["entityfinder"], parent);
+    ui.menus.addMenuItems(menu, ["entitymanager"], parent);
     ui.menus.addMenuItems(menu, ["entityfinderOld"], parent);
   };
 

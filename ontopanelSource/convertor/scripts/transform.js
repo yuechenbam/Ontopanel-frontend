@@ -4,21 +4,21 @@ export const transform = (ui, resultBtn) => {
   let parent = graph.getDefaultParent();
   // var vertices = graph.getChildVertices(parent);
 
-  // var edges = graph.getChildEdges(parent);
+  // let bounds = graph.getGraphBounds();
 
-  let bounds = graph.getGraphBounds();
+  // let childrenIncludeCollapsed = graph.getCells(
+  //   bounds.x,
+  //   bounds.y,
+  //   bounds.width,
+  //   bounds.height,
+  //   parent,
+  //   null,
+  //   null,
+  //   null,
+  //   true
+  // );
 
-  let children = graph.getCells(
-    bounds.x,
-    bounds.y,
-    bounds.width,
-    bounds.height,
-    parent,
-    null,
-    null,
-    null,
-    true
-  );
+  let children = graph.model.getDescendants(parent);
 
   let foundedNodeGroup = {};
   let nodes = children.filter((elem) => elem.isVertex());

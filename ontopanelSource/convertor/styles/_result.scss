@@ -1,0 +1,40 @@
+.result-btns {
+  margin-bottom: 5px;
+  height: 25px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  input {
+    height: 90%;
+    border-radius: 2px;
+    font-size: 13px;
+  }
+  input[type="button"] {
+    border: none;
+    height: 100%;
+    padding: 3px;
+    font-size: 13px;
+    cursor: pointer;
+    color: black;
+    background-color: rgb(201, 199, 199);
+    &:hover {
+      background-color: grey;
+    }
+  }
+  .match-info {
+    font-size: 13px;
+    margin-left: 3px;
+    color: rgb(214, 59, 111);
+  }
+}
+.result-show {
+  margin-top: 0px;
+  overflow: auto;
+  height: 335px;
+  .highlight {
+    background: #f1b1c3;
+  }
+  .locate {
+    background-color: red;
+  }
+}

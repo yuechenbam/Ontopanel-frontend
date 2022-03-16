@@ -1,23 +1,11 @@
 export const extractData = (ui) => {
   let graph = ui.editor.graph;
   let parent = graph.getDefaultParent();
-  // var vertices = graph.getChildVertices(parent);
 
-  // var edges = graph.getChildEdges(parent);
+  let children = graph.model.getDescendants(parent);
 
-  let bounds = graph.getGraphBounds();
+  children = children.filter((elem) => elem !== parent);
 
-  let children = graph.getCells(
-    bounds.x,
-    bounds.y,
-    bounds.width,
-    bounds.height,
-    parent,
-    null,
-    null,
-    null,
-    true
-  );
   let nodes = {};
   let edges = {};
   let errors = {
@@ -27,7 +15,7 @@ export const extractData = (ui) => {
     other_errors: [],
   };
   children.forEach((elem) => {
-    let elemStyle = elem.style;
+    let elemStyle = elem.style ? elem.style : "";
     if (typeof elem.value === "object") {
       let type = elem.getAttribute("Type", null);
       if (type) {

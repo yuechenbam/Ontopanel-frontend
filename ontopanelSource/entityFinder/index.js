@@ -27,10 +27,10 @@ export const makeEntityWnd = (ui) => {
   // });
 
   mxUtils.br(app);
-  mxResources.parse("entityfinder=Ontopanel-entityFinder");
+  mxResources.parse("entitymanager=Ontopanel-EntityManager");
 
   var wnd = new mxWindow(
-    mxResources.get("entityfinder"),
+    mxResources.get("entitymanager"),
     app,
     document.body.offsetWidth - 480,
     140,

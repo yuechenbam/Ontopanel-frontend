@@ -45,6 +45,9 @@ class OntoTree {
     let content = this.data.content;
 
     let ul = buildTree(this.ui, content, liElem, this.wnd, this.treeContent);
+    ul.oncontextmenu = (evt) => {
+      evt.stopPropagation();
+    };
     treeEntities.replaceWith(ul);
   }
 
@@ -381,7 +384,11 @@ const liOutBtnToggle = (text, id, ui, wnd, evt) => {
       break;
   }
 
-  let obj = makeNewObject(attrs);
+  let doc = mxUtils.createXmlDocument();
+
+  let newObj = doc.createElement("object");
+
+  let obj = makeNewValue(newObj, attrs);
 
   let graph = ui.editor.graph;
 
@@ -430,6 +437,7 @@ const liReplaceBtnToggle = (text, id, ui) => {
             .replace(pattern, "")
             .trim()
             .toLowerCase();
+          let cellValue = cell.value;
 
           switch (cate.toLowerCase()) {
             // datatype: can show in datavalue, datatype, datatypeproperty(rectangle)
@@ -443,7 +451,7 @@ const liReplaceBtnToggle = (text, id, ui) => {
                   IRI_DT: term.EntityIRI,
                 };
 
-                let obj = makeNewObject(attrs);
+                let obj = makeNewValue(cellValue, attrs);
                 ui.editor.graph.model.setStyle(cell, newStyle);
                 ui.editor.graph.model.setValue(cell, obj);
               } else if (cellType_main === "datatype") {
@@ -455,7 +463,7 @@ const liReplaceBtnToggle = (text, id, ui) => {
                   IRI: term.EntityIRI,
                 };
 
-                let obj = makeNewObject(attrs);
+                let obj = makeNewValue(cellValue, attrs);
 
                 ui.editor.graph.model.setStyle(cell, newStyle);
                 ui.editor.graph.model.setValue(cell, obj);
@@ -477,8 +485,8 @@ const liReplaceBtnToggle = (text, id, ui) => {
                   IRI_DT: term.EntityIRI,
                 };
 
-                let obj = makeNewObject(attrs);
-
+                let obj = makeNewValue(cellValue, attrs);
+                ui.editor.graph.model.setStyle(cell, newStyle);
                 ui.editor.graph.model.setValue(cell, obj);
               } else {
                 throw `The selected shape is not a datavalue or datatype or datatypeproperty(asseration)!`;
@@ -498,7 +506,7 @@ const liReplaceBtnToggle = (text, id, ui) => {
                     IRI: term.EntityIRI,
                   };
 
-                  let obj = makeNewObject(attrs);
+                  let obj = makeNewValue(cellValue, attrs);
 
                   ui.editor.graph.model.setStyle(cell, newStyle);
                   ui.editor.graph.model.setValue(cell, obj);
@@ -518,7 +526,7 @@ const liReplaceBtnToggle = (text, id, ui) => {
                     IRI_DP: term.EntityIRI,
                     IRI_DT: IRI_DT,
                   };
-                  let obj = makeNewObject(attrs);
+                  let obj = makeNewValue(cellValue, attrs);
                   ui.editor.graph.model.setStyle(cell, newStyle);
                   ui.editor.graph.model.setValue(cell, obj);
                 }
@@ -542,7 +550,7 @@ const liReplaceBtnToggle = (text, id, ui) => {
                   IRI: term.EntityIRI,
                 };
 
-                let obj = makeNewObject(attrs);
+                let obj = makeNewValue(cellValue, attrs);
 
                 ui.editor.graph.model.setStyle(cell, newStyle);
                 ui.editor.graph.model.setValue(cell, obj);
@@ -591,10 +599,8 @@ const makeNewLabel = (label, text) => {
 
   let div = document.createElement("div");
   div.innerHTML = label;
-  console.log(label);
 
   let cleanedLabel = div.textContent || div.innerText || "";
-  console.log(cleanedLabel);
 
   // get text outside
   let outside = cleanedLabel.replace(pattern, "").trim();
@@ -617,13 +623,11 @@ const makeNewStyle = (cell, color) => {
   return newStyle;
 };
 
-const makeNewObject = (attrs) => {
-  let doc = mxUtils.createXmlDocument();
-  let obj = doc.createElement("object");
+const makeNewValue = (cellValue, attrs) => {
   for (let [key, value] of Object.entries(attrs)) {
-    obj.setAttribute(key, value);
+    cellValue.setAttribute(key, value);
   }
-  return obj;
+  return cellValue;
 };
 
 export default OntoTree;

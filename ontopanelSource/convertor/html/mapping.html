@@ -1,28 +1,40 @@
 <div class="mapping-tool">
   <form action="multipart/form-data">
-    <input
-      type="file"
-      id="myfile"
-      name="myFile"
-      required
-      style="max-width: 190px"
-    />
 
-    <select name="filetype">
-      <option value="csv">csv</option>
-      <option value="excel">excel</option>
-      <option value="json">json</option>
-    </select>
+    <input type="file" name="myfile" required value="upload" style="max-width:100px" />
 
-    <select name="decimal">
-      <option value=",">,</option>
-      <option value=";">.</option>
-    </select>
+    <div class="selector">
+      <label>filetype</label>
+      <select name="filetype">
+        <option value="csv">csv</option>
+        <option value="excel">excel</option>
+        <!-- <option value="json">json</option> -->
+      </select>
+    </div>
+    <div class="selector">
+      <label>decimal</label>
+      <select name="decimal">
+        <option value=".">.</option>
+        <option value=",">,</option>
+      </select>
+    </div>
+    <div class="selector-seperator">
+      <label>seperator</label>
+      <select name="seperator">
+        <option value=",">,</option>
+        <option value=";">;</option>
+        <!-- <option value="\t">\t</option> -->
+      </select>
+    </div>
+    <div class="selector">
+      <label>NRow</label>
+      <input type="number" name="startRow" value="0" required min="0">
+    </div>
 
-    <select name="csv-seperator">
-      <option value=",">,</option>
-      <option value=";">;</option>
-    </select>
+    <div class="selector">
+      <label>SkipRow</label>
+      <input type="number" name="skipRow" value="0" required min="0">
+    </div>
 
     <!-- <input
       type="number"
@@ -35,5 +47,41 @@
 
     <input type="submit" name="submit" />
   </form>
-  <div>under development</div>
+  
+  <div>
+    <div class="mapping-format" style="display: none;">
+      <div style="font-weight: bold;"> Mapping Format: </div> 
+      <div>add </div> 
+      <input name="mapping-prefix" type="text" value="{col}" style="width: 50px;">
+      
+      <div style="margin-left: 3px;">to </div>
+  
+      <select name="mapping-location">
+        <option value="none">none</option>
+        <option value="start">start</option>
+        <option value="end">end</option>
+      </select>
+      <div class="mapping-format-example">
+        ns:text
+      </div>
+  
+    </div>
+    <div class="mapping-error"></div>
+    <div class="mapping-table">
+      <div style="height: 285px; width: 100%; ">
+        It is available now. </br>
+        Two data format are supported: excel and csv. </br>
+        If any more formats are wanted, please contact yue.</br>
+        Tutorial see in github.
+      </div>
+
+      </table>
+    </div>
+    <div style="display: flex;align-items: center; ">
+      <div class="mapping-count">
+        Rows:0; Columns:0; Only shows the first 100.
+      </div>
+      <input class="mapping-reset-btn" type="button" name="mapping-reset" value="Reset">
+    </div>
+  </div>
 </div>

@@ -85,9 +85,21 @@ const makeLi = (id, message, ui) => {
     let graph = ui.editor.graph;
     let model = graph.getModel();
     let cell = model.getCell(id);
+    let cellGroup = [cell];
     graph.clearSelection();
-    graph.setSelectionCell(cell);
-    graph.scrollCellToVisible(cell, true);
+    let parent = graph.getDefaultParent();
+    let collapsedCells = model
+      .getDescendants(parent)
+      .filter((elem) => elem.collapsed);
+    collapsedCells.forEach((elem) => {
+      let de = model.getDescendants(elem);
+      if (de.includes(cell)) {
+        cellGroup.push(elem);
+      }
+    });
+
+    graph.setSelectionCells(cellGroup);
+    graph.scrollCellToVisible(cellGroup[0], true);
   };
 
   return li;
@@ -107,6 +119,17 @@ const makeLiRelation = (id_list, message, ui) => {
     let model = graph.getModel();
     let cellGroup = id_list.map((id) => model.getCell(id));
     graph.clearSelection();
+    let parent = graph.getDefaultParent();
+    let collapsedCells = model
+      .getDescendants(parent)
+      .filter((elem) => elem.collapsed);
+    collapsedCells.forEach((elem) => {
+      let de = model.getDescendants(elem);
+      if (de.some((a) => cellGroup.includes(a))) {
+        cellGroup.push(elem);
+      }
+    });
+
     graph.setSelectionCells(cellGroup);
     graph.scrollCellToVisible(cellGroup[1], true);
   };

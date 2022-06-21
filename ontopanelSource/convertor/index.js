@@ -8,6 +8,8 @@ import MappingFrom from "./scripts/mapping.js";
 import { hostAddress } from "../vars.js";
 import { resultContainer } from "./scripts/result";
 
+// convertor
+
 export const makeConvertorWnd = (ui) => {
   var app = document.createElement("div");
   app.id = "convertor-app";
@@ -144,9 +146,6 @@ export const makeConvertorWnd = (ui) => {
         resultBtn.click();
       });
   };
-
-  // mappingBtn.click();
-  // resultBtn.click();
 
   return wnd;
 };

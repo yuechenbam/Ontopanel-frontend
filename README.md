@@ -1,41 +1,93 @@
-## About
+# Ontopanel-frontend
 
-This is a fork of [diagrams.net](https://app.diagrams.net), [previously draw.io](https://www.diagrams.net/blog/move-diagrams-net).
+## What is Ontopanel?
 
-There is one plugin ontopanel, which can be found via Extra-Plugins. Click [drawio interface](https://yuechenbam.github.io/src/main/webapp/index.html) to get full editor functionality of the plugin version.
+Ontopanel is a plugin in [diagrams.net](https://github.com/jgraph/drawio) that helps domain experts to build ontologies and method graph in a simpler way.
 
-If you see any updates to this project, be sure to clear your cache (history) before opening it, otherwise the new features will not show up. If you see the error in other browsers, please use Chrome to open it.
+It is designed within the framework of the [Materials Open Laboratory (MatOLab)](https://github.com/Mat-O-Lab) by [Bundesanstalt für Materialforschung und -prüfung (BAM)](https://www.bam.de/Navigation/DE/Home/home.html) to solve the problems encountered by domain experts when building ontologies graphically using diagrames.net, such as ontology reuse, ontology transformation and data mapping.
 
-This is a beta version, please let me know if you have any comments(yue.chen@bam.de).
+It consist of three tools, their tutorials can be found in [Ontopanel video tutorials ](https://github.com/yuechenbam/yuechenbam.github.io):
 
-## Ontopanel
+### Library
 
-This plugin is designed for MESO ontology and is compatible with Chowlk Convertor.
-Please click to see how to use the plugin of ontopanel:
+Ontopanel-Library is a XML library for ontology conceptualization that provides a set of shapes to represent each element of the OWL specification. It is based on Chowlk library.
 
-https://user-images.githubusercontent.com/90606851/135603089-4b929c01-1bd4-4ded-a9d2-b483189961e5.mp4
+### EntityManager
 
-### Version
+EntityManager is a tool that allows user to upload their ontologies and export entities in diagrams.net. It contains a default ontology- MSEO, the ontology developed in the MatOLab project.
 
-**22.11.2021(latest):**
+### Convertor:
 
-- new version Ontopanel is released. ImportOnto might be removed later.
-  - You can register and login. Data is saved in databank. Please do **NOT** keep confidential data in the database.
-  - Changed table structure to tree structure, and added more details of each entity.(Similar to Protege)
-  - Probelm: due to server problem, you can not import large ontology files, this will be solved with new server.
-  - If you have any suggestions, please write me an email or open an issue here.
+Convertor is a tool that validates current graph and convert it into diagrams.net into OWL. It can also realize data mapping -- to combine experimental dataset with the method graph.
 
-**12.10.2021:**
+## Frontend
 
-- Activate "+" button. You can import ontology via file or URL now.
+This project is the frontend of Ontopanel and works with [Ontopanel-backend](https://github.com/yuechenbam/Ontopanel-backend).
 
-**06.10.2021:**
+Diagrams.net provides access to load plugins by adding the URL of your plugin script in the web application via Extra-plugins.
+However, this feature is turned off for the official web application. Therefore, you must set up your own server, such as a GithubPage, to allow the diagrams.net application to load your own plugins.
 
-- Added colors to the MESO ontology, datavalue button, and a prefix button to output the namespaces used in this ontology.
+To load this plugin in your own diagrams.net application, you can
 
-- Color descriptions (including inferred subclasses):
-  - Subclasses of process (equivalent to continuant in BWMD) in green: "#1C9E71",
-  - Subclasses of InformationContentEntities (equivalent to ocurrent in BWMD) in yellow: "#F0F000",
-  - Subclasses of InformationBearingArtifact (equivalent to quality in BWMD) in gray: "#DADADA",
-  - DataValues in orange: "#FF8C00", taken from Protege.
-  - Rest in black.
+1. make it a default plugin: put the script file in the plugins folder and add it to the default plugin list. In this case, user can awalys find this plugin in the default plugin list.
+
+   ```
+   // plugin folder
+   \drawio\src\main\webapp\plugins
+   ```
+
+2. add URL of your script file to Extra-plugins. It will disappear if the cache is cleared.
+
+In this project, the plugin script is added as a default plugin. Its source code is bundled and minizied into one single file through webpack and put in plugin folder.
+
+```
+// source code of Ontopanel-frontend
+\ontopanelSource
+
+// bundled file of Ontopanel-frontend
+\drawio\src\main\webapp\plugins\ontopanelPlugin\ontopanel.js
+```
+
+## Installation
+
+### Clone the project
+
+```
+git clone https://github.com/yuechenbam/Ontopanel-frontend.git
+```
+
+### Add backend address:
+
+```
+// file location: ontopanelSource\vars.js
+// change the host address below in the file to your own address.
+export const hostAddress = "http://127.0.0.1:8000/";
+```
+
+### Install dependencies
+
+```
+npm install
+```
+
+### Run the app
+
+```
+// use webpack dev server
+npm run start
+
+// to build
+npm run build
+```
+
+## Related repositories and links
+
+[Ontopanel GithubPage repository with tutorials](https://github.com/yuechenbam/yuechenbam.github.io) - repository of Ontopanel online demo.
+
+[Ontopanel online demo](https://yuechenbam.github.io/src/main/webapp/index.html) - diagrams.net, contains the Ontopanel plugin hosted on the GithubPage.
+
+[Ontopanel-backend](https://github.com/yuechenbam/Ontopanel-backend) - Ontopanel's frontend source code.
+
+## Contact
+
+Yue Chen (yue.chen@bam.de)

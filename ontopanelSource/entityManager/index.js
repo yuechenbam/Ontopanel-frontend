@@ -4,6 +4,9 @@ import { storeData } from "./scripts/store";
 import SignForm from "./scripts/login-system";
 import OntoTree from "./scripts/onto-tree";
 import "./index.scss";
+import mseo from "./defaultOntology/mseo_ontopanel.json";
+
+// entityManager
 
 export const makeEntityWnd = (ui) => {
   var app = document.createElement("div");
@@ -12,19 +15,6 @@ export const makeEntityWnd = (ui) => {
 
   app.innerHTML = layout;
   app.addEventListener("contextmenu", (evt) => evt.preventDefault());
-  // app.addEventListener("keydown", (evt) => {
-  //   evt = evt || window.event;
-  //   var key = evt.code;
-
-  //   // Detecting Ctrl
-  //   var ctrl = ev.ctrlKey ? ev.ctrlKey : key === 17 ? true : false;
-
-  //   // If key pressed is V and if ctrl is true.
-  //   if (key == 67 && ctrl) {
-  //     let text = app.getSelection();
-  //     console.log(text);
-  //   }
-  // });
 
   mxUtils.br(app);
   mxResources.parse("entitymanager=Ontopanel-EntityManager");
@@ -101,18 +91,23 @@ export const makeEntityWnd = (ui) => {
 
   app.querySelector("#ontopanel-onto-extra-btn-MSEO").onclick = (evt) => {
     evt.preventDefault();
-    fetch("plugins/ontopanelPlugin/ontoData/mseo_ontopanel.json")
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        data.onto_table.namespaces = storeData.mesoNamespace;
-        storeData.modifyOntoBank(
-          ["ontopanel-onto-extra-btn-MSEO", data],
-          "add"
-        );
-        storeData.loadCurrentTable(data);
-      });
+    let data = mseo;
+    data.onto_table.namespaces = storeData.mesoNamespace;
+    storeData.modifyOntoBank(["ontopanel-onto-extra-btn-MSEO", data], "add");
+    storeData.loadCurrentTable(data);
+
+    // fetch("defaultOntology/mseo_ontopanel.json")
+    //   .then((response) => {
+    //     return response.json();
+    //   })
+    //   .then((data) => {
+    //     data.onto_table.namespaces = storeData.mesoNamespace;
+    //     storeData.modifyOntoBank(
+    //       ["ontopanel-onto-extra-btn-MSEO", data],
+    //       "add"
+    //     );
+    //     storeData.loadCurrentTable(data);
+    //   });
   };
 
   app.querySelector("#ontopanel-namespace-btn").onclick = (evt) => {

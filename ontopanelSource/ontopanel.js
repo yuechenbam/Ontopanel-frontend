@@ -1,11 +1,11 @@
-import { makeEntityWnd as makeEntityWndOld } from "./entityFinder_version1/index.js";
-import { makeEntityWnd } from "./entityFinder/index.js";
+import { makeEntityWnd } from "./entityManager/index.js";
 import { makeConvertorWnd } from "./convertor/index.js";
 import { loadOntopanelLibrary } from "./loadLibrary/loadLibrary.js";
 
-// too plugins
-// entityTool to show entities
-// convertorTool to convertor plot
+// three tools
+// library loads in sidebar for graph construction
+// entitymanager Tool to show entities
+// convertor Tool to convertor plot
 
 Draw.loadPlugin(function (ui) {
   loadOntopanelLibrary(ui);
@@ -13,11 +13,6 @@ Draw.loadPlugin(function (ui) {
   let entityFinderWnd = makeEntityWnd(ui);
   ui.actions.addAction("entitymanager", function () {
     entityFinderWnd.setVisible(!entityFinderWnd.isVisible());
-  });
-
-  let entityFinderWndOld = makeEntityWndOld(ui);
-  ui.actions.addAction("entityfinderOld", function () {
-    entityFinderWndOld.setVisible(!entityFinderWndOld.isVisible());
   });
 
   let convertorWnd = makeConvertorWnd(ui);
@@ -32,17 +27,5 @@ Draw.loadPlugin(function (ui) {
     oldFunct.apply(this, arguments);
     ui.menus.addMenuItems(menu, ["convertor"], parent);
     ui.menus.addMenuItems(menu, ["entitymanager"], parent);
-    ui.menus.addMenuItems(menu, ["entityfinderOld"], parent);
   };
-
-  // active backend
-  fetch("https://ontopanel.herokuapp.com/api/v1/ontos/lists/", {
-    method: "GET",
-  });
-
-  setInterval(function () {
-    fetch("https://ontopanel.herokuapp.com/api/v1/ontos/lists/", {
-      method: "GET",
-    });
-  }, 20 * 1000 * 60);
 });

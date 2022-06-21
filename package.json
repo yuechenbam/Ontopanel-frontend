@@ -1,7 +1,6 @@
 {
-  "name": "drawio_test",
+  "name": "ontopanel-frontend",
   "version": "1.0.0",
-  "description": "This is a fork of [diagrams.net](https://app.diagrams.net), [previously draw.io](https://www.diagrams.net/blog/move-diagrams-net).",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,16 +8,6 @@
     "watch": "webpack --watch",
     "start": "webpack serve --open"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jgraph/drawio.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/jgraph/drawio/issues"
-  },
-  "homepage": "https://github.com/jgraph/drawio#readme",
   "devDependencies": {
     "css-loader": "^6.5.1",
     "html-loader": "^3.0.1",

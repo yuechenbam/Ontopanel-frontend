@@ -1,6 +1,6 @@
 const path = require("path");
 module.exports = {
-  mode: "production",
+  mode: "development",
   target: "web",
 
   // for drawio io development

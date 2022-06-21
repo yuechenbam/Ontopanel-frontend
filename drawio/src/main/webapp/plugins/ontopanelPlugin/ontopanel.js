@@ -386,7 +386,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _ent
   \*********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"hostAddress\": () => (/* binding */ hostAddress)\n/* harmony export */ });\n// backend address\r\n\r\n// export const hostAddress = \"http://127.0.0.1:8000/\";\r\nconst hostAddress = \"https://ontopanel.herokuapp.com/\";\r\n\n\n//# sourceURL=webpack://ontopanel-frontend/./ontopanelSource/vars.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"hostAddress\": () => (/* binding */ hostAddress)\n/* harmony export */ });\n// backend address\r\n\r\nconst hostAddress = \"http://127.0.0.1:8000/\";\r\n\n\n//# sourceURL=webpack://ontopanel-frontend/./ontopanelSource/vars.js?");
 
 /***/ }),
 

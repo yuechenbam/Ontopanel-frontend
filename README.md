@@ -38,7 +38,7 @@ To load this plugin in your own diagrams.net application, you can
 
 2. add URL of your script file to Extra-plugins. It will disappear if the cache is cleared.
 
-In this project, the plugin script is added as a default plugin. Its source code is bundled and minizied into one single file through webpack and put in plugin folder.
+In both case, leave the diagrams.net folder unchanged, just add your plugin script. In this project, the plugin script is added as a default plugin. Its source code is bundled and minizied into one single file through webpack and put in plugin folder.
 
 ```
 // source code of Ontopanel-frontend
@@ -80,6 +80,16 @@ npm run start
 npm run build
 ```
 
+### Set up the server
+
+The drawio folder in the project is simply an old clone of [diagrams.net](https://github.com/jgraph/drawio), for development purpose.
+To set up the server:
+
+1. Update the drawio folder to its latest version.
+2. Bundle the ontopanel files into one.
+3. Put it under drawio-plugin folder: \drawio\src\main\webapp\plugins.
+4. Host drawio folder on GithubPage.
+
 ## Related repositories and links
 
 [Ontopanel GithubPage repository with tutorials](https://github.com/yuechenbam/yuechenbam.github.io) - repository of Ontopanel online demo.
@@ -91,3 +101,5 @@ npm run build
 ## Contact
 
 Yue Chen (yue.chen@bam.de)
+
+Markus Schilling (Markus.Schilling@bam.de)
